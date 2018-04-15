@@ -3,7 +3,7 @@ obj-m += soft_uart.o
 soft_uart-objs := module.o raspberry_soft_uart.o queue.o
 
 RELEASE = $(shell uname -r)
-LINUX = /usr/src/linux-headers-$(RELEASE)
+LINUX = /headers
 
 all:
 	$(MAKE) -C $(LINUX) M=$(PWD) modules
@@ -14,4 +14,3 @@ clean:
 install:
 	sudo install -m 644 -c soft_uart.ko /lib/modules/$(RELEASE)
 	sudo depmod
-
